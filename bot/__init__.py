@@ -115,9 +115,24 @@ rss_dict = {}
 # key: rss_title
 # value: [rss_feed, last_link, last_title]
 AUTHORIZED_CHATS = set()
+LOGS_CHATS = set()
 SUDO_USERS = set()
 AS_DOC_USERS = set()
 AS_MEDIA_USERS = set()
+if os.path.exists("logs_chat.txt"):
+    with open("logs_chat.txt", "r+") as f:
+        lines = f.readlines()
+        for line in lines:
+            #    LOGGER.info(line.split())
+            LOGS_CHATS.add(int(line.split()[0]))
+try:
+    achats = getConfig("LOGS_CHATS")
+    achats = achats.split(" ")
+    for chats in achats:
+        LOGS_CHATS.add(int(chats))
+except:
+    logging.warning('Logs Chat Details not provided!')
+    pass
 if os.path.exists('authorized_chats.txt'):
     with open('authorized_chats.txt', 'r+') as f:
         lines = f.readlines()

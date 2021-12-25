@@ -1,10 +1,10 @@
 import random
 import string
-
+from bot import LOGS_CHATS
 from telegram.ext import CommandHandler
-
+from telegram import ParseMode
 from bot.helper.mirror_utils.upload_utils import gdriveTools
-from bot.helper.telegram_helper.message_utils import sendMessage, sendMarkup, deleteMessage, delete_all_messages, update_all_messages, sendStatusMessage
+from bot.helper.telegram_helper.message_utils import *
 from bot.helper.telegram_helper.filters import CustomFilters
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.mirror_utils.status_utils.clone_status import CloneStatus
@@ -86,6 +86,15 @@ def cloneNode(update, context):
             sendMessage(men + result, context.bot, update)
         else:
             sendMarkup(result + cc, context.bot, update, button)
+            if LOGS_CHATS:
+                try:
+                    for i in LOGS_CHATS:
+                        msg1 = f'<b>File Cloned: </b> <code>{name}</code>\n'
+                        msg1 += f'<b>Size: </b>{get_readable_file_size(size)}\n'
+                        msg1 += f'<b>By: </b>{uname}\n'
+                        bot.sendMessage(chat_id=i, text=msg1, reply_markup=button, parse_mode=ParseMode.HTML)
+                except Exception as e:
+                    LOGGER.warning(e)
         if gdtot_link:
             gd.deletefile(link)
     else:
