@@ -286,6 +286,15 @@ class MirrorListener(listeners.MirrorListeners):
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             if uname is not None:
                 msg += f'\n\n<b>cc: </b>{uname}'
+            if LOGS_CHATS:
+                try:
+                    for i in LOGS_CHATS:
+                        msg1 = f'<b>File Uploaded: </b> <code>{download_dict[self.uid].name()}</code>\n'
+                        msg1 += f'<b>Size: </b>{size}\n'
+                        msg1 += f'<b>#Uploaded by: </b>{uname}\n'
+                        bot.sendMessage(chat_id=i, text=msg1, reply_markup=InlineKeyboardMarkup(buttons.build_menu(2)), parse_mode=ParseMode.HTML)
+                except Exception as e:
+                    LOGGER.warning(e)                       
         if self.isQbit and QB_SEED:
            return sendMarkup(msg, self.bot, self.update, InlineKeyboardMarkup(buttons.build_menu(2)))
         else:
