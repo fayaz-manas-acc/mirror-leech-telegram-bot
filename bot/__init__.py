@@ -114,6 +114,7 @@ download_dict = {}
 rss_dict = {}
 # key: rss_title
 # value: [rss_feed, last_link, last_title]
+LOG_CHANNEL = set()
 AUTHORIZED_CHATS = set()
 LOGS_CHATS = set()
 SUDO_USERS = set()
@@ -149,6 +150,19 @@ try:
     for chats in achats:
         AUTHORIZED_CHATS.add(int(chats))
 except:
+    pass
+if os.path.exists("log_channel.txt"):
+    with open("logs_chat.txt", "r+") as f:
+        lines = f.readlines()
+        for line in lines:
+            LOG_CHANNEL.add(int(line.split()[0]))
+try:
+    achats = getConfig("LOG_CHANNEL")
+    achats = achats.split(" ")
+    for chats in achats:
+        LOG_CHANNEL.add(int(chats))
+except:
+    logging.warning('Log Channel Details not provided!')
     pass
 try:
     schats = getConfig('SUDO_USERS')
