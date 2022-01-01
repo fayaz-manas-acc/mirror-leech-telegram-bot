@@ -80,7 +80,7 @@ def cloneNode(update, context):
         else:
             uname = f'<a href="tg://user?id={update.message.from_user.id}">{update.message.from_user.first_name}</a>'
         if uname is not None:
-            cc = f'\n\n<b>cc: </b>{uname}'
+            cc = f'\n\n<b>#Cloned by: </b>{uname}'
             men = f'{uname} '
         if button in ["cancelled", ""]:
             sendMessage(men + result, context.bot, update)
@@ -91,7 +91,7 @@ def cloneNode(update, context):
                     for i in LOGS_CHATS:
                         msg1 = f'<b>File Cloned: </b> <code>{name}</code>\n'
                         msg1 += f'<b>Size: </b>{get_readable_file_size(size)}\n'
-                        msg1 += f'<b>By: </b>{uname}\n'
+                        msg1 += f'<b># Cloned by: </b>{uname}\n'
                         bot.sendMessage(chat_id=i, text=msg1, reply_markup=button, parse_mode=ParseMode.HTML)
                 except Exception as e:
                     LOGGER.warning(e)
