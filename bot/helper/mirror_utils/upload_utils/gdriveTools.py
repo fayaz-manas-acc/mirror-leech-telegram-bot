@@ -168,7 +168,7 @@ class GoogleDriveHelper:
         # File body description
         file_metadata = {
             'name': file_name,
-            'description': "By @EmpireMirror",
+            'description': 'By @EmpireMirror',
             'mimeType': mime_type,
         }
         if parent_id is not None:
