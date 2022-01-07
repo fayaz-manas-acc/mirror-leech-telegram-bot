@@ -62,8 +62,8 @@ def stats(update, context):
 
 def start(update, context):
     buttons = button_build.ButtonMaker()
-    buttons.buildbutton("Channel", "https://t.me/theempiregroup")
-    buttons.buildbutton("Group", "https://t.me/empiremirror")
+    buttons.buildbutton("Channel", "https://t.me/KOT_BOTS")
+    buttons.buildbutton("Group", "https://t.me/KOT_REPORS")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
@@ -173,7 +173,7 @@ help_string_telegraph = f'''<br>
 '''
 
 help = telegraph.create_page(
-        title='Mirror-Leech-Bot Help',
+        title='KOT Mirror-Leech-Bot Help',
         content=help_string_telegraph,
     )["path"]
 
@@ -254,7 +254,7 @@ def main():
         os.remove(".restartmsg")
     elif OWNER_ID:
         try:
-            text = "<b>Bot Restarted!\n\nPlease re-download again!</b>"
+            text = "<b>Bᴇ Fᴀsᴛ Lɪᴋᴇ ᴀ Cʜᴇᴇᴛᴀʜ.𝗕𝗼𝘁 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗲𝗱!\n\nPlease re-download again!</b>"
             bot.sendMessage(chat_id=OWNER_ID, text=text, parse_mode=ParseMode.HTML)
             if AUTHORIZED_CHATS:
                 for i in AUTHORIZED_CHATS:
